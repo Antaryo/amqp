@@ -990,10 +990,11 @@ module AMQP
         self.append_callback(:delete, &block)
 
         # TODO: delete itself from queues cache
-        @channel.unregister_queue(self)
+
         @channel.queues_awaiting_delete_ok.push(self)
       end
 
+      @channel.unregister_queue(self)
       self
     end # delete(channel, queue, if_unused, if_empty, nowait, &block)
 
