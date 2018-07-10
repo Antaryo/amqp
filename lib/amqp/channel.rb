@@ -1405,6 +1405,14 @@ module AMQP
 
     # @api plugin
     # @private
+    def unregister_queue(queue)
+      raise ArgumentError, "argument is nil!" if queue.nil?
+
+      @queues.delete(queue.name)
+    end # register_queue(queue)
+
+    # @api plugin
+    # @private
     def find_queue(name)
       @queues[name]
     end
